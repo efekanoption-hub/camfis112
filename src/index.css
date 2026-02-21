@@ -1,0 +1,347 @@
+:root {
+  --primary: #7c3aed;
+  --primary-dark: #6d28d9;
+  --secondary: #a855f7;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --gradient: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+  --success: #10b981;
+  --danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  background: var(--bg);
+}
+
+.header-gradient {
+  background: var(--gradient);
+  padding: 24px 24px 60px;
+  /* Reduced top/bottom padding */
+  color: white;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  position: relative;
+}
+
+.balance-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 16px 20px;
+  /* Reduced padding */
+  margin-top: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.balance-title {
+  font-size: 11px;
+  /* Smaller font */
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.balance-amount {
+  font-size: 28px;
+  /* Smaller amount font */
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.action-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.action-btn:active .action-icon {
+  transform: scale(0.9);
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  margin-top: -40px;
+  /* Adjusted overlap */
+  overflow-y: auto;
+  padding-bottom: 120px;
+  /* Increased padding to clear fixed nav */
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-title h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.receipt-item {
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.receipt-item:active {
+  transform: scale(0.98);
+}
+
+.receipt-icon {
+  width: 44px;
+  height: 44px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.receipt-info {
+  flex: 1;
+}
+
+.receipt-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.receipt-date {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.receipt-amount {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-main);
+}
+
+.bottom-nav {
+  position: fixed;
+  /* Fixed to screen */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: 80px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+  border-top: 1px solid #f1f5f9;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+  /* iOS support */
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+
+.scan-button-container {
+  margin-top: -40px;
+}
+
+.scan-btn {
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+  border: 4px solid white;
+}
+
+/* Scanner Overlay */
+.scanner-overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.scanner-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.camera-preview {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-frame {
+  width: 80%;
+  height: 60%;
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.scan-frame::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+  animation: scan-anim 2s linear infinite;
+}
+
+@keyframes scan-anim {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+.scanner-actions {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.capture-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 5px solid white;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capture-btn-inner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Utils */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 300;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
